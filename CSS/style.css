@@ -633,41 +633,59 @@ footer .copyright {
    ========================= */
 
 .support-box {
-  margin-top: 40px;
+  margin-top: 50px;
   font-size: 15px;
 }
 
 .support-intro {
-  margin-bottom: 15px;
-  opacity: 0.9;
+  margin-bottom: 25px;
+  opacity: 0.85;
+  line-height: 1.6;
 }
 
 .support-contacts {
   display: flex;
-  gap: 40px;
+  gap: 60px;
   flex-wrap: wrap;
 }
 
-.support-contacts div {
-  min-width: 160px;
+.support-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
 }
 
-.support-contacts a {
-  color: #F7FAF7;
-  text-decoration: underline;
+.support-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.support-name {
+  font-weight: 500;
+  font-size: 14px;
   opacity: 0.9;
-  transition: opacity 0.3s ease;
 }
 
-.support-contacts a:hover {
+.support-mail {
+  color: #F7FAF7;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(247, 250, 247, 0.4);
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.support-mail:hover {
   opacity: 1;
+  border-color: #F7FAF7;
 }
 
 
 /* =========================
    MOBIL
    ========================= */
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .hero {
     grid-template-columns: 1fr;
   }
@@ -681,7 +699,7 @@ footer .copyright {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .hero-content {
     padding: 40px 20px;       /* mindre padding */
     max-width: 100%;           /* fylder hele bredden */
@@ -700,7 +718,12 @@ footer .copyright {
 @media (max-width: 1000px) {
   .support-contacts {
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+  }
+
+  .support-item {
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -883,6 +906,43 @@ footer .copyright {
    DET SKER
    ========================= */
 
+/* Dansk gudstjeneste */
+.social-danish {
+  display: flex;
+  justify-content: center;   /* centrerer hele blokken */
+  gap: 15px;                 /* afstand mellem byerne */
+  margin-top: 5px;           /* matcher spacing på engelsk */
+}
+
+.city-block {
+  display: flex;
+  flex-direction: column;    /* bynavn over ikoner */
+  align-items: center;
+  gap: 4px;                  /* afstand mellem bynavn og ikoner */
+  padding: 0;                /* fjernet baggrund/padding for ensartet look */
+  border-radius: 0;          /* ingen afrunding */
+  background: none;          /* ingen farve */
+}
+
+.city-block span {
+  font-weight: 500;          /* lidt mindre end tidligere, matcher engelske kort */
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.city-icons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Separator */
+.city-divider {
+  width: 30px;
+  height: 35px;
+  background: rgba(255,255,255,0.3);
+}
+
+/* Andre kort */
 .events {
     max-width: 1200px;
     margin: 40px auto;
@@ -895,6 +955,31 @@ footer .copyright {
     font-size: 2rem;
     color: #222;
     font-weight: bold;
+}
+
+
+/* =========================
+   Mobilview
+   ========================= */
+
+@media (max-width: 768px) {
+  .social-danish {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+  /* Mobil: vandret separator */
+@media (max-width: 768px) {
+  .social-danish {
+    flex-direction: column;
+  }
+
+  .city-divider {
+    width: 40px;
+    height: 1px;
+    margin: 5px 0;
+  }
 }
 
 /* =========================
@@ -1033,14 +1118,22 @@ footer .copyright {
 }
 
 /* Desktop: 3, 3, 4 layout */
+/* Desktop: 3, 4, 4 layout */
 @media (min-width: 900px) {
-    .event-card:nth-child(-n+6) {
-        flex: 1 1 calc(33.33% - 20px);
-    }
+  /* Første 3 kort */
+  .event-card:nth-child(-n+3) {
+    flex: 1 1 calc(33.33% - 20px);
+  }
 
-    .event-card:nth-child(n+7) {
-        flex: 1 1 calc(25% - 20px);
-    }
+  /* Næste 4 kort (kort 4-7) */
+  .event-card:nth-child(n+4):nth-child(-n+7) {
+    flex: 1 1 calc(25% - 20px);
+  }
+
+  /* Sidste 4 kort (kort 8-11) */
+  .event-card:nth-child(n+8):nth-child(-n+11) {
+    flex: 1 1 calc(25% - 20px);
+  }
 }
 
 /* Tablet: 2 per række */
@@ -1068,6 +1161,7 @@ footer .copyright {
     width: 100%;
     height: 200px;      /* sæt samme højde på alle billeder */
     object-fit: cover;  /* beskær hvis billedet ikke passer */
+    object-position: top center; /* fokus på toppen af billedet */
     border-radius: 8px;
     margin-bottom: 15px;
 }
