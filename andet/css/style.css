@@ -233,25 +233,54 @@ body {
 }
 
 /* =========================
-   NAV (DESKTOP)
+   NAVIGATION (DESKTOP)
    ========================= */
 
 .nav {
   justify-self: center;
+
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 .nav a {
+  position: relative;
+
+  color: var(--color-text-dark);
   text-decoration: none;
-  color: #202223;
   font-weight: 500;
-  transition: 0.2s ease;
+
+  transition: color 0.2s ease;
 }
 
-.nav a:hover {
-  color: #58A670;
+/* underline animation */
+.nav > a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 100%;
+  height: 2px;
+
+  background: var(--color-text);
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition: transform 0.2s ease;
 }
+
+.nav > a:hover {
+  color: var(--color-text);
+}
+
+.nav > a:hover::after {
+  transform: scaleX(1);
+}
+
 
 /* =========================
    DESKTOP DROPDOWN
@@ -325,7 +354,7 @@ body {
 /* hover state = samme som dine andre links */
 .nav a:hover,
 .dropdown > a:hover {
-  color: var(--color-primary);
+  color: inherit;
 }
 
 /* ARROW rotation */
@@ -338,7 +367,7 @@ body {
 
 .dropdown:hover .arrow {
   transform: rotate(180deg);
-  color: var(--color-primary);
+  color: inherit;
 }
 
 /* =========================
@@ -396,7 +425,7 @@ body {
 
 .lang-menu a:hover {
   background: var(--color-bg-header-secondary);
-  color: var(--color-primary)
+  color: inherit
 }
 
 /* =========================
